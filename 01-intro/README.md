@@ -1,4 +1,6 @@
 # mlops
+Link to the zoomcamp
+https://github.com/DataTalksClub/mlops-zoomcamp/tree/main
 it's about creating a ml model and automating its execution, isolating it 
 
 1-preparing environnement
@@ -51,5 +53,34 @@ ML PIPELINE = load & prepare data -> Vectorize -> Train
         DATA PREP -> TRAIN MODEL -> DEPLOY MODEL
     4-Full automation mlops
 4-Experiment Tracking:
-
-                
+https://www.youtube.com/watch?v=MiA7LQin9c8&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=8
+    Demo commence à partir de 11:11
+    to track relevant information about an experiment element 
+        Source code 
+        Environement
+        Data 
+        Model
+        Hyperparameters
+        Metrics
+    It's important for:
+        Reproducibility
+        Organization
+        Optimization
+    
+ Concepts:
+    ML experiment:the process of building an ML model
+    Experiment run: each trial in an ML experiment
+    Run artifact: any file that is associated with ML run 
+    Experiment metadata
+    
+    MLFLOW:
+    Mlflow: machine learning plateform for ML model lifecycle
+        Concretement: c'est une package python contenant installant avec pip:   
+            Tracking
+            Models
+            Model Registry
+            Projects
+        #installer mlflow
+        pip install mlflow
+        lancer l'interface mlflow
+        mlflow ui 
