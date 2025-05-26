@@ -104,3 +104,7 @@ https://www.youtube.com/watch?v=MiA7LQin9c8&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhE
         https://www.youtube.com/watch?v=cESCQE9J3ZE&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK
         On utilise Hyperopt pour tester plusieurs Hyperparameters et choisir la combinaison optimale
         http://youtube.com/watch?v=OVUPIX88q88&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=11
+
+        Model management using MLFLOW
+         managing models 
+         depolyement
