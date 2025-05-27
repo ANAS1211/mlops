@@ -118,3 +118,10 @@ https://www.youtube.com/watch?v=MiA7LQin9c8&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhE
                 choisir le modèle -> register model -> donner nom
             attribuer le stade de chaque ml:
                 A lire "https://www.mlflow.org/docs/latest/model-registry/#migrating-from-stages"
+            On utilise la classe mlclient pour interagir avec le serveur mlflow 
+                lister les runs et les expérimentations
+                ajouter des expérimenttations 
+                faire des filtres 
+                ajouter ou modifier une étape (staging, production,..)
+
+            https://www.youtube.com/watch?v=1ykg4YmbFVA&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=13
