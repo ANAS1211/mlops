@@ -108,3 +108,13 @@ https://www.youtube.com/watch?v=MiA7LQin9c8&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhE
         Model management using MLFLOW
          managing models 
          depolyement
+        Model registry:
+            It records models that are ready for production
+            pour le choix du modele de production, 3 parametres:
+                -l'indicateur de Performance du modèle (RMSE) (model -> metrics)
+                -temps d'entrainement du modele (duration)
+                -volume du fichier generé par le modele(artifact -> model.xgb )
+            pour registrer le modele    
+                choisir le modèle -> register model -> donner nom
+            attribuer le stade de chaque ml:
+                A lire "https://www.mlflow.org/docs/latest/model-registry/#migrating-from-stages"
