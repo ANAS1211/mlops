@@ -123,5 +123,19 @@ https://www.youtube.com/watch?v=MiA7LQin9c8&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhE
                 ajouter des expérimenttations 
                 faire des filtres 
                 ajouter ou modifier une étape (staging, production,..)
+            Mlflow in practice
+                https://www.youtube.com/watch?v=1ykg4YmbFVA&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=13
+                configuring Mlflow 
+                    Think about Backend store   
+                        local filesystem (si on veut enregistrer les fichiers en local)
+                        SQLAlchemy compatible db
+                    Artifacts store
+                        think about where to store metadata
+                            local filesystem
+                            remote (e.g s3 bucket)
+                    Tracking serveur    
+                        think about if we have to run a tracking server locally or distant one 
+                         no tracking server
+                         localhost
+                         remote
 
-            https://www.youtube.com/watch?v=1ykg4YmbFVA&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=13

@@ -1,0 +1,15 @@
+artifact_uri: file:///workspaces/mlops/02-experiment_tracking/mlflow-in-practice/mlruns/109983832050554785/f369b03bdd8b4532acdaad8111e9a817/artifacts
+end_time: 1748428810059
+entry_point_name: ''
+experiment_id: '109983832050554785'
+lifecycle_stage: active
+run_id: f369b03bdd8b4532acdaad8111e9a817
+run_name: righteous-wasp-7
+run_uuid: f369b03bdd8b4532acdaad8111e9a817
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748428805807
+status: 3
+tags: []
+user_id: codespace

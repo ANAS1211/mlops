@@ -1,0 +1,6 @@
+artifact_location: file:///workspaces/mlops/02-experiment_tracking/mlflow-in-practice/mlruns/0
+creation_time: 1748428642249
+experiment_id: '0'
+last_update_time: 1748428642249
+lifecycle_stage: active
+name: Default
