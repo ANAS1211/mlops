@@ -1,0 +1,219 @@
+# mlops
+Link to the zoomcamp
+https://github.com/DataTalksClub/mlops-zoomcamp/tree/main
+it's about creating a ml model and automating its execution, isolating it 
+
+1-preparing environnement
+
+
+ce dépot contient une pipeline de ml 
+"Code -> codespace"
+"install github codespace" -> if not already installed
+"this is a test"
+
+Install anaconda
+wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
+bash Anaconda3-2022.05-Linux-x86_64.sh
+
+Installer pyarrow pour lire des fichiers parquet
+
+A chaque fois éteindre le codespace pour economiser l'utilisation
+    CODE -> ... -> stop codespace
+
+ML PIPELINE = load & prepare data -> Vectorize -> Train 
+    charger les données
+    vectorize consiste à transformer le dataframe en 
+    entrainer le modèle
+2- Ml model
+ https://www.youtube.com/watch?v=iRunifGSHFc&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK
+ https://github.com/DataTalksClub/mlops-zoomcamp/blob/main/01-intro/duration-prediction.ipynb
+3- Mlops Automation levels:
+    0: only ml model in a jupyter notebook
+    1:Devops but no mlops 
+        CICD
+        Automated releases
+        Unit & integration test
+        ops metrics ( les métriques opérationnelles utilisées pour monitorer des modèles de machine learning en production.)
+            Type	            Exemple
+            Data Quality	    Missing values, schema drift
+            Model Performance	Accuracy, RMSE, AUC, F1
+            Drift Detection	    Data drift, concept drift
+            Serving Metrics	    Latency, throughput
+            Usage Metrics	    Number of predictions, requests/sec
+            Resource Metrics	CPU/memory usage, GPU usage
+    2- Automated training:
+        Training pipeline
+        Experiment tracking
+        Model registry
+        Low friction deployement
+        Os work with engineers
+    3- Automated deployement:
+        it's easy to deploy model
+        generaly the model is on ML plateform and called by API
+        DATA PREP -> TRAIN MODEL -> DEPLOY MODEL
+    4-Full automation mlops
+4-Experiment Tracking:
+    https://www.youtube.com/watch?v=MiA7LQin9c8&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=8
+        Demo commence à partir de 11:11
+        to track relevant information about an experiment element 
+            Source code 
+            Environement
+            Data 
+            Model
+            Hyperparameters
+            Metrics
+        It's important for:
+            Reproducibility
+            Organization
+            Optimization
+        
+    Concepts:
+        ML experiment:the process of building an ML model
+        Experiment run: each trial in an ML experiment
+        Run artifact: any file that is associated with ML run 
+        Experiment metadata
+        
+        MLFLOW:
+        Mlflow: machine learning plateform for ML model lifecycle
+            Concretement: c'est une package python contenant installant avec pip:   
+                Tracking
+                Models
+                Model Registry
+                Projects
+            #installer mlflow
+            pip install mlflow
+            lancer l'interface mlflow
+            mlflow ui 
+        Installing mlflow
+            creating requirement file requirements.txt
+            créer un env virtuel
+                pip install virtualenv
+                python3 -m venv track-env
+
+            installer les packages de requirements.txt
+                pip install -r requirements.txt
+            lancer mlflow avec config du backend
+                mlflow ui --backend-store-uri sqlite:///mlflow.db
+                    #argument pour définir l'endroit de stockage des artifact
+            ajouter la bib mlflow
+                import mlflow
+            ajouter la bd créée
+                mlflow.set_tracking_uri("sqlite:///mlflow.db")
+            ajouter le nom de l'experimentation
+                mlflow.set_experiment("nyc-taxi-experiment")
+            https://www.youtube.com/watch?v=cESCQE9J3ZE&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK
+            On utilise Hyperopt pour tester plusieurs Hyperparameters et choisir la combinaison optimale
+            http://youtube.com/watch?v=OVUPIX88q88&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=11
+
+            Model management using MLFLOW
+            managing models 
+            depolyement
+            Model registry:
+                It records models that are ready for production
+                pour le choix du modele de production, 3 parametres:
+                    -l'indicateur de Performance du modèle (RMSE) (model -> metrics)
+                    -temps d'entrainement du modele (duration)
+                    -volume du fichier generé par le modele(artifact -> model.xgb )
+                pour registrer le modele    
+                    choisir le modèle -> register model -> donner nom
+                attribuer le stade de chaque ml:
+                    A lire "https://www.mlflow.org/docs/latest/model-registry/#migrating-from-stages"
+                On utilise la classe mlclient pour interagir avec le serveur mlflow 
+                    lister les runs et les expérimentations
+                    ajouter des expérimenttations 
+                    faire des filtres 
+                    ajouter ou modifier une étape (staging, production,..)
+                Mlflow in practice
+                    https://www.youtube.com/watch?v=1ykg4YmbFVA&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=13
+                    configuring Mlflow 
+                        Think about Backend store   
+                            local filesystem (si on veut enregistrer les fichiers en local)
+                            SQLAlchemy compatible db
+                        Artifacts store
+                            think about where to store metadata
+                                local filesystem
+                                remote (e.g s3 bucket)
+                        Tracking serveur    
+                            think about if we have to run a tracking server locally or distant one 
+                            no tracking server
+                            localhost
+                            remote
+                MLflow: benefits, limitations and alternatives
+                    https://www.youtube.com/watch?v=Lugy1JPsBRY&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK&index=14
+    3.1 - Machine Learning Pipelines
+        Download data -> Transforming data (preprocessing) -> preparing data for ML -> Hyperparameters tuning (finding the best parametres)
+        -> train the final model (with best params) -> save the model in the registry
+
+    3-2    l'objectif est de convertir le fichier jupyter en script python 
+            ou chaque étape est reprise dans une fonction qui retourne un résultat
+            ce résultat est repris par l'étape suivante 
+            jupyter nbconvert --to=script duration-prediction.ipynb 
+4' Le déploiement d’un modèle de machine learning (ML) consiste à mettre un modèle entraîné à disposition d’un système ou d’utilisateurs finaux, pour qu’il puisse être utilisé en production sur de nouvelles données, en temps réel ou en batch.
+
+    🎯 Objectif
+    Passer du prototype (Jupyter Notebook, fichier local) à un service utilisable dans un produit, une application ou un processus métier.
+    🚀 Étapes du déploiement d’un modèle ML
+    1. Préparation du modèle
+    Entraînement terminé, modèle validé.
+
+    Sauvegarde dans un format exploitable : joblib, pickle, ONNX, TensorFlow SavedModel, etc.
+
+    2. Création d’une API ou d’un pipeline
+    Le modèle est exposé via :
+
+    une API REST (par exemple avec Flask, FastAPI, Django, etc.)
+
+    un batch process (traitement périodique ou en masse)
+
+    une intégration dans un outil métier ou une application mobile
+
+    3. Containerisation (optionnelle mais fréquente)
+    Utilisation de Docker pour isoler le modèle et ses dépendances.
+
+    Avantage : portabilité, reproductibilité, scalabilité.
+
+    4. Infrastructure de déploiement
+    Hébergement sur :
+
+    Serveurs (Linux, VM)
+
+    Cloud (AWS SageMaker, Google Vertex AI, Azure ML, etc.)
+
+    Kubernetes pour des services scalables
+
+    Edge devices (mobile, embarqué)
+
+    5. Monitoring & maintenance
+    Une fois déployé, il faut :
+
+    Suivre la performance (qualité des prédictions, temps de réponse)
+
+    Détecter la dérive du modèle (data drift, concept drift)
+
+    Mettre à jour ou réentraîner si nécessaire
+
+    🧠 Exemple concret
+    Imagine un modèle de prédiction du temps de trajet des taxis :
+
+    📦 Tu entraînes le modèle avec les données historiques.
+
+    🧪 Tu le testes et le valides.
+
+    🚀 Tu crées une API qui reçoit un point de départ/destination et retourne une durée estimée.
+
+    🖥️ Tu héberges l’API sur un serveur (par exemple, via AWS EC2 ou Heroku).
+
+    🔁 Tu mets à jour ton modèle tous les mois avec les nouvelles données.
+    
+    Déploiement du modele comme un service web
+        prendre le fichier pickle et le déployer
+    Etapes:
+        creating a virtualenv with Pipenv
+        creating a script for predicting
+        putting the script into a Flask app
+        packaging the app to Docker
+    
+    récupere la version de scikit-learn utilisé pour le ML
+        pip freeze | grep scikit-learn
+        => scikit-learn==1.6.1
+        pipenv install scikit-learn==1.6.1 Flask    
